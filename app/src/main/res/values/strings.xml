@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ButterSweety</string>
+    <string name="title_activity_login">LoginAct</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_activity_main_screen2">MainScreen2</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+</resources>

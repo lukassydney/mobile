@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "623567312917",
+    "project_id": "buttersweety-3ab3f",
+    "storage_bucket": "buttersweety-3ab3f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:623567312917:android:96fea7ce7ab86b4e1d961c",
+        "android_client_info": {
+          "package_name": "com.example.buttersweety"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "623567312917-dtn92d8pvausgq56j7nkbnqfd0ncgc8c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABz_MwLerDWZpPX3Vr3RcoXeBRDa84h4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "623567312917-dtn92d8pvausgq56j7nkbnqfd0ncgc8c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
