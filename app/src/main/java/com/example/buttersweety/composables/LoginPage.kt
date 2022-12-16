@@ -8,6 +8,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -18,6 +19,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -30,9 +32,8 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.buttersweety.NavigationItem
+import com.example.buttersweety.*
 import com.example.buttersweety.R
-import com.example.buttersweety.Screen
 import com.example.buttersweety.ui.theme.whiteBackground
 import kotlinx.coroutines.delay
 
@@ -40,9 +41,17 @@ import kotlinx.coroutines.delay
 @Composable
 fun DefaultPreview()
 {
-//   SplashScreen()
+    ListListScopeSample()
 }
 
+
+
+@Preview(showBackground = true)
+@Composable
+fun LazyRow() {
+
+
+}
 
 
 //login
@@ -193,7 +202,69 @@ fun DefaultPreview()
 //      )
 //   }
 //}
+
+@Composable
+fun ListListScopeSample(){
+    LazyColumn(
+
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+    ) {
+//        LazyRow(
+//            horizontalArrangement = Arrangement.spacedBy(8.dp)
+//        ) {
+//            items(fruitsList) { model ->
+//                ListColumn(model = model)
+//            }
+//        }
+    }
+
+
+
+
+
+    fruitsList.add(FruitModel("Apple", R.drawable.ic_a))
+    fruitsList.add(FruitModel("Orange", R.drawable.logooo))
+    fruitsList.add(FruitModel("Banana", R.drawable.logooo))
+    fruitsList.add(FruitModel("Strawberry", R.drawable.logooo))
+    fruitsList.add(FruitModel("Mango", R.drawable.logooo))
 //
+}
+private val fruitsList = mutableListOf<FruitModel>()
+
+
+
+
+data class FruitModel(val name:String, val image : Int)
+
+@Composable
+fun ListColumn(model: FruitModel) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .wrapContentHeight()
+            .fillMaxWidth()
+            .background(Color.White)
+    ) {
+        Image(
+            painter = painterResource(id = model.image),
+            contentDescription = "",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(100.dp)
+                .padding(5.dp)
+        )
+        Text(
+            text = model.name,
+            fontSize = 24.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = Color.White
+        )
+    }
+}
+
+
 //
 
 

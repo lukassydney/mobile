@@ -27,15 +27,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.buttersweety.ui.theme.ButterSweetyTheme
 import com.example.buttersweety.ui.theme.Pink
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import io.grpc.Context
 
 class MainActivity : ComponentActivity() {
+    private val auth by lazy { Firebase.auth}
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ButterSweetyTheme {
                 // A surface container using the 'background' color from the theme
-                LoginActivitySip()
+                SplashScreenSip()
             }
         }
     }

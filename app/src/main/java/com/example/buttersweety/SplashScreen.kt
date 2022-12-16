@@ -1,5 +1,7 @@
 package com.example.buttersweety
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
@@ -31,7 +34,7 @@ class SplashScreen : ComponentActivity() {
         setContent {
             ButterSweetyTheme {
                 // A surface container using the 'background' color from the theme
-                navigation()
+                SplashScreenSip()
             }
         }
     }
@@ -62,10 +65,13 @@ fun navigation()
 }
 
 @Composable
-fun SplashScreenSip(navController: NavController){
+fun SplashScreenSip(){
+
+    val context = LocalContext.current
+
     LaunchedEffect(key1 = true ){
         delay(4000)
-        navController.navigate("login_screen")
+        context.startActivity(Intent(context, LoginActivity::class.java))
     }
 
     Column(modifier = Modifier.fillMaxSize(),

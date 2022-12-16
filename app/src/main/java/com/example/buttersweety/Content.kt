@@ -219,7 +219,7 @@ fun SpecialMenu()
 {
         Box(
             modifier = Modifier
-                .padding(top = 300.dp)
+                .padding(top = 400.dp)
                 .padding(start = 50.dp)
                 .clip(RoundedCornerShape(12.dp))
                 .width(300.dp)
@@ -401,6 +401,8 @@ fun DefaultPreview5() {
     Settingpage()
     ProfileScreen()
 }
+
+
 
 
 

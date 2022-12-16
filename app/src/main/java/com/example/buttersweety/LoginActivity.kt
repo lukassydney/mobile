@@ -2,6 +2,7 @@ package com.example.buttersweety
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -18,18 +19,30 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.buttersweety.ui.theme.ButterSweetyTheme
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class LoginActivity : ComponentActivity() {
+
+    private val auth by lazy {
+        Firebase.auth
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            LoginActivitySip()
+            LoginActivitySip(auth)
         }
     }
 }
 
 @Composable
-fun LoginActivitySip() {
+fun LoginActivitySip(auth: FirebaseAuth) {
+
+    var password by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colors.background
@@ -64,11 +77,11 @@ fun LoginActivitySip() {
                         .height(60.dp)
                         .fillMaxWidth().background(Color.White)
                 ) {
-                    var text by remember { mutableStateOf(TextFieldValue("")) }
+
                     TextField(
-                        value = text,
+                        value = email,
                         onValueChange = {
-                            text = it
+                            email = it
                         },
                         label = { Text(text = "Email") },
                         placeholder = { Text(text = "Masukkan email") }
@@ -91,11 +104,11 @@ fun LoginActivitySip() {
                         .height(60.dp)
                         .fillMaxWidth().background(Color.White)
                 ) {
-                    var text by remember { mutableStateOf(TextFieldValue("")) }
+
                     TextField(
-                        value = text,
+                        value = password,
                         onValueChange = {
-                            text = it
+                            password = it
                         },
                         label = { Text(text = "Password") },
                         placeholder = { Text(text = "Masukkan password") }
@@ -115,7 +128,15 @@ fun LoginActivitySip() {
             ) {
                 Button(
                     onClick = {
-                        context.startActivity(Intent(context, MainScreen2::class.java))
+                    Firebase.auth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener{
+                        if (it.isSuccessful){
+                            context.startActivity(Intent(context, MainScreen2::class.java))
+                            Toast.makeText(context, "Login Berhasil", Toast.LENGTH_SHORT).show()
+                        }else{
+                            Toast.makeText(context, "Login gagal", Toast.LENGTH_SHORT).show()
+                        }
+                        }
                     },
                     // Uses ButtonDefaults.ContentPadding by default
                     contentPadding = PaddingValues(
