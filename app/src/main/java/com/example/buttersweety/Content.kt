@@ -1,5 +1,6 @@
 package com.example.buttersweety
 
+import android.content.Intent
 import android.media.Image
 import android.net.Uri
 import android.os.Bundle
@@ -18,6 +19,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
@@ -39,12 +41,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.BlendMode.Companion.Screen
 import androidx.navigation.NavController
 import com.example.buttersweety.ui.theme.Purple200
 import com.example.buttersweety.ui.theme.ButterSweetyTheme
 import com.example.buttersweety.ui.theme.Purple200
+import okhttp3.internal.http2.Header
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
+import com.example.buttersweety.Image as Image
 
 
 @Composable
@@ -259,12 +264,210 @@ fun DefaultPreview2() {
 
 @Composable
 fun Notifpage() {
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .background(Color.White)
-        .wrapContentSize(Alignment.Center)) {
+//    bagian menu keranjang
+    Box(
+        contentAlignment = Alignment.TopCenter,
+        modifier = Modifier
+            .padding(top = 50.dp)
+            .padding(start = 40.dp)
+            .padding(end = 40.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .width(350.dp)
+            .height(350.dp)
+            .background(Color(0XffFFE2E2))
+
+
+    )
+    {
+        Text(
+            text = "Menu Keranjang", textAlign = TextAlign.Center, fontSize = 20.sp
+        )
+    }
+
+    Box(
+        contentAlignment = Alignment.TopCenter,
+        modifier = Modifier
+            .padding(top = 120.dp)
+            .padding(start = 50.dp)
+            .padding(end = 50.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .width(300.dp)
+            .height(100.dp)
+            .background(Color(0xFFF8ECEC))
+
+    )
+    {
+//        Text(text = "Martabak Kentang", textAlign = TextAlign.Center, fontSize = 15.sp,
+//        )
+    }
+
+//  gambar menu
+    Box(
+        contentAlignment = Alignment.TopCenter,
+        modifier = Modifier
+            .padding(top = 120.dp)
+            .padding(start = 75.dp)
+            .padding(end = 150.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .width(100.dp)
+            .height(100.dp)
+            .background(Color(0xFFF8ECEC))
+
+    )
+    {
+        Image(
+            painter = painterResource(id = R.drawable.ic_a),
+            contentDescription = "baner",
+            modifier = Modifier.fillMaxSize()
+        )
 
     }
+
+//    deskripsi menu dan harga
+    Box(
+        contentAlignment = Alignment.TopCenter,
+        modifier = Modifier
+            .padding(top = 125.dp)
+            .padding(start = 180.dp)
+            .padding(end = 50.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .width(150.dp)
+            .height(100.dp)
+            .background(Color(0xFFF8ECEC))
+
+    )
+    {
+        Text(
+            text = "Martabak Kentang" +
+                    "Martabak isi kulit dan daging         " +
+                    "Rp.30.000",
+            textAlign = TextAlign.Left, fontSize = 13.sp,
+        )
+    }
+
+//    bagian plus
+    Box(
+        contentAlignment = Alignment.TopCenter,
+        modifier = Modifier
+            .padding(top = 190.dp)
+            .padding(start = 255.dp)
+            .padding(end = 50.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .width(30.dp)
+            .height(30.dp)
+            .background(Color(0xFFF73D3D))
+
+    ) {
+        IconButton(onClick = { /*TODO*/ }) {
+            Icon(Icons.Filled.Add, contentDescription = "Localized description")
+        }
+    }
+
+
+//    bagian minus
+    Box(
+        contentAlignment = Alignment.TopCenter,
+        modifier = Modifier
+            .padding(top = 190.dp)
+            .padding(start = 295.dp)
+            .padding(end = 50.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .width(30.dp)
+            .height(30.dp)
+            .background(Color(0xFFF73D3D))
+
+    ) {
+        IconButton(onClick = { /*TODO*/ }) {
+            Icon(Icons.Filled.Add, contentDescription = "Localized description")
+        }
+    }
+
+//    bagian quantity
+    Box(
+        contentAlignment = Alignment.TopCenter,
+        modifier = Modifier
+            .padding(top = 190.dp)
+            .padding(start = 200.dp)
+            .padding(end = 45.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .width(30.dp)
+            .height(30.dp)
+            .background(Color(0XffFFE2E2))
+
+
+    )
+    {
+        Text(
+            text = "2", textAlign = TextAlign.Center, fontSize = 20.sp
+        )
+    }
+
+// bagian total
+    Box(
+        contentAlignment = Alignment.TopCenter,
+        modifier = Modifier
+            .padding(top = 255.dp)
+            .padding(start = 50.dp)
+            .padding(end = 45.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .width(290.dp)
+            .height(40.dp)
+            .background(Color(0xFFF7EBEB))
+
+
+    )
+    {
+        Text(
+            text = "Total : Rp.60.000", textAlign = TextAlign.Center, fontSize = 20.sp
+        )
+    }
+
+//    tombol pesan
+    Box(
+        contentAlignment = Alignment.TopCenter,
+        modifier = Modifier
+            .padding(top = 350.dp)
+            .padding(start = 120.dp)
+            .padding(end = 50.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .width(150.dp)
+            .height(30.dp)
+            .background(Color(0xFFFA6060))
+
+
+    )
+    {
+        Text(
+            text = "pesan", textAlign = TextAlign.Center, fontSize = 20.sp
+        )
+    }
+}
+
+
+
+//@Composable
+//fun Notifpage() {
+//    Card(
+//        Modifier
+//            .height(100.dp)
+//            .padding(horizontal = 15.dp)
+//    ) {
+//        Row(
+//            Modifier.fillMaxSize(),
+//            verticalAlignment = Alignment.CenterVertically
+//        ) {
+//            Image()
+//        }
+//    }
+//}
+//
+//@Composable
+//fun Image(){
+//
+//}
+
+private fun RowScope.Image() {
+    TODO("Not yet implemented")
 }
 
 @Preview(showBackground = true)
